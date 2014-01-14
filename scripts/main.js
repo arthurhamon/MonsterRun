@@ -48,3 +48,28 @@ window.requestAnimFrame = (function(){
             window.setTimeout(callback, 1000 / 60);
           };
 })();
+
+function checkCollision(a, b){
+	var a_top = a.y,
+    a_bottom = a.y + a.img.height,
+    a_left = a.x ,
+    a_right = a.x + a.img.width,
+    b_top = b.y,
+    b_bottom = b.y + b.height,
+    b_left = b.x,
+    b_right = b.x + b.width;
+
+  	if (a_bottom > b_top && a_bottom < b_bottom && a_left < b_right && a_right > b_left){
+  		console.log('top');
+   		return 'top';
+    }
+
+    if (a_top < b_bottom && a_bottom > b_bottom && a_left < b_right && a_right > b_left){
+  		console.log('bottom');
+   		return 'bottom';
+    }
+
+   //  if (a_top < b_bottom && a_bottom > b_bottom && a_left < b_right && a_right > b_left){
+   // return 'bottom';
+   //  }
+};

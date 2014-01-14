@@ -12,8 +12,6 @@ define(['canvas','input','config','IM'], function(canvas,input,config,IM){
 			// Positions and speed
 			this.x 			 = 100;
 			this.y 			 = 560;
-			this.width 		 = 20;
-			this.height 	 = 20;
 			this.speed 		 = 3;
 			// Horizontal and vertical movements
 			this.velX 		 = 0;
@@ -22,7 +20,6 @@ define(['canvas','input','config','IM'], function(canvas,input,config,IM){
 			this.friction 	 = 0.8;
 			this.jump 		 = false;
 			this.gravity 	 = 0.3;
-			this.grounded    = false;
 		}; 
 
 		this.update = function() {
@@ -41,7 +38,7 @@ define(['canvas','input','config','IM'], function(canvas,input,config,IM){
 			// Verify that the player can't leave of the canvas
 			if (this.x < 0) this.x = 0;
 			if (this.x + this.width > canvas.canvas.width)   this.x = canvas.canvas.width - this.width;
-
+			
 			if (input.gamepad.connected) {
 				this.gamepadCharacterController();
 			}else{
@@ -82,9 +79,6 @@ define(['canvas','input','config','IM'], function(canvas,input,config,IM){
 					this.jump = true;
 					this.velY = -this.speed*2;
 			  	}
-			}
-			if(input.keyboard.up == false){
-				this.velY 	+= this.gravity;
 			}
 			if(this.y <= 200){
 				this.velY 	+= this.gravity;
