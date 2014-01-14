@@ -14,6 +14,7 @@ define(['config','input','canvas','stage','IM','player','box'], function(config,
 
 		this.update = function() {
 			// wcheck for all updates
+			input.updateGamepadsButtons();
 			player.update();
 			box.update();
 		};
