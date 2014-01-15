@@ -16,7 +16,6 @@ require.config({
 
 require(['game', 'IM', 'IIG', 'config'], function(game, ImagesManager, IIG, config) {
 
-	ImagesManager.add('assets/img/bkg2.jpg');
 	ImagesManager.add('assets/img/player.png');
 
 	ImagesManager.loadAll(function() {
