@@ -11,8 +11,6 @@ define([], function() {
 	canvas.style.position = 'absolute';
 	canvas.style.top = 0;
 	canvas.style.left = 0;
-	canvas.style.right = 0;
-	canvas.style.bottom = 0;
 
 	// Ajout du canvas à la page
 	window.document.body.appendChild(canvas);
