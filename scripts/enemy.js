@@ -16,7 +16,6 @@ define(['config', 'IM', 'canvas'], function(config, IM, canvas) {
 
 	function EnemyManager() {
 		this.enemiesList = [];
-		this.mainTarget = {x:0, y:0};
 
 		this.init = function() {
 			var i = config.enemies_number;

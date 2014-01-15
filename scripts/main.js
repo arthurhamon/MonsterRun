@@ -39,7 +39,7 @@ require(['game', 'IM', 'IIG', 'config'], function(game, ImagesManager, IIG, conf
 
 });
 
-// shim layer with setTimeout fallback
+// shim layer with setTimeout callback
 window.requestAnimFrame = (function(){
   return  window.requestAnimationFrame       ||
           window.webkitRequestAnimationFrame ||
@@ -49,27 +49,34 @@ window.requestAnimFrame = (function(){
           };
 })();
 
-function checkCollision(a, b){
-	var a_top = a.y,
-    a_bottom = a.y + a.img.height,
-    a_left = a.x ,
-    a_right = a.x + a.img.width,
-    b_top = b.y,
-    b_bottom = b.y + b.height,
-    b_left = b.x,
-    b_right = b.x + b.width;
+function checkCollision(shapeA,shapeB){
+	var a_top = shapeA.y,
+    a_bottom = shapeA.y + shapeA.img.height,
+    a_left = shapeA.x ,
+    a_right = shapeA.x + shapeA.img.width,
+    b_top = shapeB.y,
+    b_bottom = shapeB.y + shapeB.height,
+    b_left = shapeB.x,
+    b_right = shapeB.x + shapeB.width;
 
   	if (a_bottom > b_top && a_bottom < b_bottom && a_left < b_right && a_right > b_left){
-  		console.log('top');
    		return 'top';
     }
 
     if (a_top < b_bottom && a_bottom > b_bottom && a_left < b_right && a_right > b_left){
-  		console.log('bottom');
    		return 'bottom';
     }
 
-   //  if (a_top < b_bottom && a_bottom > b_bottom && a_left < b_right && a_right > b_left){
-   // return 'bottom';
-   //  }
 };
+
+function collide(a,b){
+	var ax = a.x || a.position.x;
+	var ay = a.y || a.position.y;
+	var bx = b.x || b.position.x;
+	var by = b.y || b.position.y;
+
+	return !(bx >= ax + a.width // Trop à droite
+				|| bx + b.width <= ax // Trop à gauche
+				|| by >= ay + a.height // Trop en bas
+				|| by + b.height <= ay) // Trop en haut
+}

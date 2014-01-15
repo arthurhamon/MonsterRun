@@ -38,7 +38,7 @@ define(['canvas','input','config','IM'], function(canvas,input,config,IM){
 			// Verify that the player can't leave of the canvas
 			if (this.x < 0) this.x = 0;
 			if (this.x + this.width > canvas.canvas.width)   this.x = canvas.canvas.width - this.width;
-			
+
 			if (input.gamepad.connected) {
 				this.gamepadCharacterController();
 			}else{
@@ -58,12 +58,13 @@ define(['canvas','input','config','IM'], function(canvas,input,config,IM){
 				this.velY 	+= this.gravity;
 			}
 			
-			this.x += input.gamepad.joystickLeft.axeX * this.speed;
+			if(input.gamepad.joystickLeft.axeX){
+				this.x += input.gamepad.joystickLeft.axeX * this.speed;
+			}
 
 			// Limit height when the player jump
 			if(this.y <= 200){
 				this.velY 	+= this.gravity;
-				console.log(this.y);
 			}
 		};
 
